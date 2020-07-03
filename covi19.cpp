@@ -46,7 +46,7 @@ int main(){
          system("cls");
          printf("\n\t\t\t\t|--------------------------------------------------------------|");
          printf("\n\t\t\t\t|                  LISTA LIGADA SIMPLES | AED                  |");
-         printf("\n\t\t\t\t|                             |                                |");
+         printf("\n\t\t\t\t|                     Mayra Gonçalves                          |");
          printf("\n\t\t\t\t|--------------------------------------------------------------|");
          printf("\n\t\t\t\t|  1  - INSERIR NÓ NO INICIO DA LISTA                          |");
          printf("\n\t\t\t\t|  2  - INSERIR NÓ NO MEIO DA LISTA                            |");
@@ -239,7 +239,7 @@ covid19 *inserirNoMeio(covid19 *inicio, char p[30], int c, int r, int o, int ca)
     if(novoNO==NULL) return inicio;
     if(inicio==NULL) return novoNO;
         aux=inicio;
-    while(aux->Seguinte!=NULL && aux->pais<p){
+    while(aux->Seguinte!=NULL && aux->casos<c){
             anterior=aux;
             aux=aux->Seguinte;
             }
@@ -271,10 +271,10 @@ void imprimirLista(covid19 *inicio){
         covid19 *aux=inicio;
      printf("INICIO!-> ");
         while(aux!=NULL){// enquanto existe dado
-        printf("%s->| ",aux->pais);//imprimir dado
-        printf("|%d->",aux->casos);//imprimir dado
-        printf("|%d->",aux->recuperados);//imprimir dado
-        printf("|%d->",aux->obitos);//imprimir dado
+        printf("|%s-> ",aux->pais);//imprimir dado
+        printf("%d->",aux->casos);//imprimir dado
+        printf("%d->",aux->recuperados);//imprimir dado
+        printf("%d->",aux->obitos);//imprimir dado
         printf("%d->| ",aux->casos_ativos);//imprimir dado
             aux=aux->Seguinte;//ir para o nó seguinte
         }
@@ -290,7 +290,7 @@ covid19 *removerNoInicio(covid19 *inicio, char paises[30]){
         aux=inicio;
         paises=aux->pais;
         inicio=aux->Seguinte;
-        printf("Foi removido o elemento %s\n",paises);
+        printf("\nFoi removido o país %s\n",paises);
         free(aux);
     }
     return inicio;//retorna lista atualizada
@@ -309,7 +309,7 @@ covid19 *removerNoFinal(covid19 *inicio, char paises[30]){
         }
         paises=aux->pais;
         anterior->Seguinte=NULL;
-        printf("Foi removido o elemento %s\n",paises);
+        printf("Foi removido o país %s\n",paises);
         free(aux);//eliminar ultima da lista
        }
     return inicio;
@@ -428,15 +428,30 @@ covid19* pesquisarElemento(covid19* le, char busca[30]){
  void ordemAscendente(covid19 **p){
   if(*p == NULL || (*p)->Seguinte == NULL) return; //se for nulo(vazio), ou apenas 1 elemento
   covid19 *aux = *p, *t;
+  char pcasos[30];
   int rcasos; //precisa de espacao suficiente para armazenar o nome
 
    while(aux != NULL) {
       t = aux->Seguinte;
       while(t != NULL) {
         if(aux->casos > t->casos) { //se vir depois
+           strcpy( pcasos, aux->pais);
             rcasos= aux->casos;
+            rcasos= aux->recuperados;
+            rcasos= aux->obitos;
+            rcasos= aux->casos_ativos;
+            
+           strcpy( aux->pais, t->pais);
             aux->casos= t->casos;
+            aux->recuperados= t->recuperados;
+            aux->obitos= t->obitos;
+            aux->casos_ativos= t->casos_ativos;
+                
+            strcpy(t->pais, pcasos);
             t->casos= rcasos;
+            t->recuperados= rcasos;
+            t->obitos= rcasos;
+            t->casos_ativos= rcasos;
         }
         t = t->Seguinte;
       }

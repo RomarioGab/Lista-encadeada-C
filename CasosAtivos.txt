@@ -1,0 +1,7 @@
+eeeee -> casos ativos:  -4
+mmm -> casos ativos:  -6
+dffgg -> casos ativos:  1220
+wwwwww -> casos ativos:  -110
+1111 -> casos ativos:  -1
+2222 -> casos ativos:  -2
+3 -> casos ativos:  -3
